@@ -1,30 +1,14 @@
-"use server"
+import { Document, Schema, model, models } from "mongoose";
 
-import { CreateCategoryParams } from "@/types"
-import { handleError } from "../utils"
-import { connectToDatabase } from "../database"
-import Category from "../database/models/category.model"
-
-export const createCategory = async ({ categoryName }: CreateCategoryParams) => {
-  try {
-    await connectToDatabase();
-
-    const newCategory = await Category.create({ name: categoryName });
-
-    return JSON.parse(JSON.stringify(newCategory));
-  } catch (error) {
-    handleError(error)
-  }
+export interface ICategory extends Document {
+  _id: string;
+  name: string;
 }
 
-export const getAllCategories = async () => {
-  try {
-    await connectToDatabase();
+const CategorySchema = new Schema({
+  name: { type: String, required: true, unique: true },
+})
 
-    const categories = await Category.find();
+const Category = models.Category || model('Category', CategorySchema);
 
-    return JSON.parse(JSON.stringify(categories));
-  } catch (error) {
-    handleError(error)
-  }
-}
+export default Category;
