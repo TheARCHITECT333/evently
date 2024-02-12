@@ -16,13 +16,13 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const isEventCreator = userId === event.orgainser._id.toString();
+  const isEventCreator = userId === event.organizer._id.toString();
 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
       <Link 
         href={`/events/${event._id}`}
-        style={{backgroundImage: `url(${event.imageURl})`}}
+        style={{backgroundImage: `url(${event.imageUrl})`}}
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
       {/* IS EVENT CREATOR ... */}
@@ -59,7 +59,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
 
         <div className="flex-between w-full">
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
-            {event.orgainser.firstName} {event.orgainser.lastName}
+            {event.organizer.firstName} {event.organizer.lastName}
           </p>
 
           {hasOrderLink && (

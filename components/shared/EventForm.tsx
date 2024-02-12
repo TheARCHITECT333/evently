@@ -19,8 +19,8 @@ import { useUploadThing } from '@/lib/uploadthing'
 import "react-datepicker/dist/react-datepicker.css";
 import { Checkbox } from "../ui/checkbox"
 import { useRouter } from "next/navigation"
+import { createEvent, updateEvent } from "@/lib/actions/event.actions"
 import { IEvent } from "@/lib/database/models/event.model"
-import { createEvent, updateEvent } from "@/lib/actions/events.action"
 
 
 type EventFormProps = {
@@ -260,7 +260,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
                   <FormControl>
                     <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-grey-50 px-4 py-2">
                       <Image
-                        src="/assets/icons/dollar.svg"
+                        src="/assets/icons/rupee.svg"
                         alt="dollar"
                         width={24}
                         height={24}

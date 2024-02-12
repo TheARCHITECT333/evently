@@ -5,27 +5,26 @@ import { handleError } from "../utils"
 import { connectToDatabase } from "../database"
 import Category from "../database/models/category.model"
 
-export const createCategory = async({ categoryName }: CreateCategoryParams) =>{
-    try {
-        await connectToDatabase();
+export const createCategory = async ({ categoryName }: CreateCategoryParams) => {
+  try {
+    await connectToDatabase();
 
-        const newCategory = await Category.create({ name: categoryName});
+    const newCategory = await Category.create({ name: categoryName });
 
-        return JSON.parse(JSON.stringify(newCategory));
-
-    } catch (error) {
-        handleError(error)
-    }
+    return JSON.parse(JSON.stringify(newCategory));
+  } catch (error) {
+    handleError(error)
+  }
 }
-export const getAllCategories = async() =>{
-    try {
-        await connectToDatabase();
 
-        const categories = await Category.find();
+export const getAllCategories = async () => {
+  try {
+    await connectToDatabase();
 
-        return JSON.parse(JSON.stringify(categories));
+    const categories = await Category.find();
 
-    } catch (error) {
-        handleError(error)
-    }
+    return JSON.parse(JSON.stringify(categories));
+  } catch (error) {
+    handleError(error)
+  }
 }
